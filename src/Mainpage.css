@@ -2,6 +2,6 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
  
-hq.text-lggg{
-    font-size: 6rem;
+h1.text-lggg{
+    font-size: 2rem;
 }
