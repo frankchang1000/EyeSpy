@@ -1,8 +1,17 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import image from "/Users/rdadoo/Desktop/EyeSpy-main/src/Screen Shot 2023-03-04 at 1.35.58 PM.png"; // import your image file
 import './ImageDisplay.css';
 
 function ImageDisplay() {
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    const fetchImage = async () => {
+      const response = await fetch('/api/image');
+      const data = await response.blob();
+      setImageData(URL.createObjectURL(data));
+    };
+    fetchImage();
+  }, []);
   return (
     <div
       style={{
@@ -25,9 +34,7 @@ function ImageDisplay() {
           flexDirection: "column",
         }}
       >
-        <img
-          src={image}
-          alt="example"
+        <img src={imageData} alt="fetched image"
           style={{
             width: "100%",
             display: "flex",
