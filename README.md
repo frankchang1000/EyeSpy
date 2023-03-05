@@ -4,7 +4,7 @@ Promoting safe driving by eliminating drowsy drivers using computer vision and o
 
 ## Table Of Contents
 
-* Purpose and Inspiration
+* Purpose and Inspiration (#purpose-and-inspiration)
 * What it Does
 * Installation and Usage
 * Challenges We Ran Into
