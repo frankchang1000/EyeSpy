@@ -6,6 +6,7 @@ from flask import Flask, render_template, Response, request, jsonify
 
 import efficientdet as efficientdet
 from EfficientDet.utils.file_reader import parse_label_file
+from playsound import playsound
 
 app = Flask(__name__)
 
@@ -13,7 +14,7 @@ app = Flask(__name__)
 
 # Alter these values to match your environment
 camera = cv2.VideoCapture(0)
-model = tf.saved_model.load('D:/coding/EyeSpy/EfficientDet/v2')
+model = tf.saved_model.load('D:/coding/EyeSpy/EfficientDet/v3')
 labels_dict = parse_label_file("D:/coding/EyeSpy/EfficientDet/data/labels.txt")
 
 def run_inference(frame):
@@ -26,9 +27,10 @@ def run_inference(frame):
         model=model,
         label_dict=labels_dict,
         image_dims=(512, 512),
-        score_threshold=0.2,
-        iou_threshold=0.2)
+        score_threshold=0.1,
+        iou_threshold=0.1)
     output_frame = cv2.cvtColor(np.array(frame), cv2.COLOR_RGB2BGR)
+
     return output_frame
 
 
@@ -44,10 +46,12 @@ def gen_frames():
             break
         else:
             frame = run_inference(np.array(frame))
+            print("running inference")
             ret, buffer = cv2.imencode('.jpg', frame)
             frame = buffer.tobytes()
             yield (b'--frame\r\n'
                    b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+
 
 @app.route('/video_feed')
 def video_feed():

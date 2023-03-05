@@ -70,4 +70,8 @@ def test(image: str,
         scores=scores,
         labels_dict=label_dict)
 
+    for label, bbox, score in zip(labels, bboxes, scores):
+        if score > 0.1:
+            playsound("eyespyWakeUp.wav")
+
     return image, labels
