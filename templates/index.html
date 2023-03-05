@@ -618,9 +618,8 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
         <div class="mainHeader">
           <header
             style="background: linear-gradient(109.6deg, rgb(0, 37, 84) 11.2%, rgba(0, 37, 84, 0.32) 100.2%); color: white; padding: 1rem 1rem 2rem; margin-bottom: 2rem;">
-            <h1 style="display: flex; align-items: center; margin: 0px; font-size: 4rem; padding-left: 5rem;">EyeSpy<img
-                src="eyespylogo.png" alt="example"
-                style="width: 130px; margin-left: 1rem;"></h1>
+            <h1 style="display: flex; align-items: center; margin: 0px; font-size: 4rem; padding-left: 5rem;">EyeSpy
+            </h1>
           </header>
         </div>
         <div class="bg-gray-100 text-gray-900">
@@ -631,34 +630,39 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
           </header>
           <main class="container mx-auto px-4 py-8">
             <div style="padding: 5px; margin: 0px 100px;">
-              <h2 class="text-2xl font-bold mb-4" style="font-weight: bold; font-size: 2.2rem;">The Future of Safety
+              <h2 class="text-2xl font-bold mb-4" style="font-weight: bold; font-size: 2.2rem;">Stop falling asleep behind the wheel!
               </h2>
-              <p class="text-lg mb-4">EyeSpy is designed with drivers safety in mind. Our goal is to protect every
-                driver on the road!</p>
             </div>
           </main>
           <footer class="bg-gray-200 py-4"></footer>
         </div>
-        <div style="position: relative; top: 20px; display: flex; justify-content: center; align-items: center;">
+        <div style="position: relative; top: 10px; display: flex; justify-content: center; align-items: center;">
           <div
-            style="width: 512px; height: 568px; border-radius: 50px; overflow: hidden; display: flex; justify-content: center; align-items: center; flex-direction: column;">
-            <h3 class="video-stream">Live Streaming</h3>
-            <img src="{{ url_for('video_feed')}}"></img>"
+            style="width: 512px; height: 568px; border-radius: 20px; overflow: hidden; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+            <img src="{{ url_for('video_feed') }}"> </img>
             <div style="display: flex; flex-direction: row;">
-              <div class="StartButton"><button class="Start"
-                  style="background-color: rgb(63, 81, 181); border-radius: 30px; color: white; padding: 10px 30px; border: none; cursor: pointer; font-size: 18px; margin-right: 10px; font-weight: bold;">Start</button>
+              <div class="StartButton" style="padding-top: 10px;">
+                <button class="Start"
+                        style="background-color: rgb(63, 81, 181); border-radius: 30px; color: white; padding: 10px 30px; border: none; cursor: pointer; font-size: 18px; margin-right: 10px; font-weight: bold;">Start</button>
               </div>
-              <div class="StopButton" style="margin-left: 10px;"><button class="Stop"
-                  style="background-color: rgb(244, 67, 54); border-radius: 30px; color: white; padding: 10px 30px; border: none; cursor: pointer; font-size: 18px; font-weight: bold;">Stop</button>
+              <div class="StopButton" style="margin-left: 10px; padding-top: 10px;">
+                <button class="Stop"
+                        style="background-color: rgb(244, 67, 54); border-radius: 30px; color: white; padding: 10px 30px; border: none; cursor: pointer; font-size: 18px; font-weight: bold;">Stop</button>
               </div>
+              <script>
+                const startButton = document.querySelector('.Start');
+                const stopButton = document.querySelector('.Stop');
+                const img = document.querySelector('img');
+              
+                startButton.addEventListener('click', () => {
+                  img.src = '/video_feed';
+                });
+              
+                stopButton.addEventListener('click', () => {
+                  img.src = '';
+                });
+              </script>
             </div>
-          </div>
-        </div>
-        <div style="position: relative; top: 70px; display: flex; justify-content: center;">
-          <div
-            style="width: 400px; height: 200px; background-color: rgb(245, 245, 245); border-radius: 10px; padding: 20px;">
-            <h2>Live Analysis</h2>
-            <p>Display Value: Initial Value</p>
           </div>
         </div>
       </div>

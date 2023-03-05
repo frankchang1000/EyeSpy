@@ -14,7 +14,7 @@ app = Flask(__name__)
 
 # Alter these values to match your environment
 camera = cv2.VideoCapture(0)
-model = tf.saved_model.load('D:/coding/EyeSpy/EfficientDet/v3')
+model = tf.saved_model.load('D:/coding/EyeSpy/v3')
 labels_dict = parse_label_file("D:/coding/EyeSpy/EfficientDet/data/labels.txt")
 
 def run_inference(frame):
@@ -27,18 +27,20 @@ def run_inference(frame):
         model=model,
         label_dict=labels_dict,
         image_dims=(512, 512),
-        score_threshold=0.1,
-        iou_threshold=0.1)
+        score_threshold=0.5,
+        iou_threshold=0.5)
     output_frame = cv2.cvtColor(np.array(frame), cv2.COLOR_RGB2BGR)
 
     return output_frame
 
+streaming = True
 
 def gen_frames():
     """
     Grabs the frames and returns to the client.
     """
-    while True:
+    global streaming
+    while streaming:
         # print("Reading from camera")
         success, frame = camera.read()
         if not success:
@@ -46,12 +48,16 @@ def gen_frames():
             break
         else:
             frame = run_inference(np.array(frame))
-            print("running inference")
+            #print("running inference")
             ret, buffer = cv2.imencode('.jpg', frame)
             frame = buffer.tobytes()
             yield (b'--frame\r\n'
                    b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
+# Define a function to stop the camera stream
+def stop_camera():
+    global streaming
+    streaming = False
 
 @app.route('/video_feed')
 def video_feed():
@@ -62,9 +68,14 @@ def video_feed():
         gen_frames(),
         mimetype='multipart/x-mixed-replace; boundary=frame')
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template('index.html')
+    if request.method == 'POST':
+        global isCameraOn
+        isCameraOn = False
+        return redirect('/')
+    else:
+        return render_template('index.html')
 
 if __name__ == "__main__":
     print("Finished loading models.")

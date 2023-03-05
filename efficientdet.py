@@ -1,10 +1,13 @@
 import os
 import tensorflow as tf
-
+import pygame
 from typing import Union
 
 from EfficientDet.utils.postprocess import FilterDetections
 from EfficientDet.utils.visualize import draw_boxes
+from playsound import playsound
+
+pygame.init()
 
 def preprocess_image(image, 
                      image_dims: tuple) -> Union[tf.Tensor, tuple]:
@@ -70,8 +73,13 @@ def test(image: str,
         scores=scores,
         labels_dict=label_dict)
 
+
+
+    sound_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'EfficientDet', 'eyespyWakeUp.wav')
+    sound = pygame.mixer.Sound(sound_file)
+
     for label, bbox, score in zip(labels, bboxes, scores):
         if score > 0.1:
-            playsound("eyespyWakeUp.wav")
-
+            if not pygame.mixer.get_busy():
+                sound.play()
     return image, labels
