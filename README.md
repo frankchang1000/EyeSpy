@@ -4,6 +4,20 @@ Promoting safe driving by eliminating drowsy drivers using computer vision and o
 
 ## Table Of Contents
 
+* Purpose and Inspiration
+* What it Does
+* Installation and Usage
+* Challenges We Ran Into
+* Accomplishments We're Proud of
+* What We Learned
+* What's Next for EyeSpy
+* Purpose and Inspiration
+* What it does
+* Installation and Usage
+* Challenges we ran into
+* Accomplishments that we're proud of
+* What we learned
+* What's next for EyeSpy
 
 
 
