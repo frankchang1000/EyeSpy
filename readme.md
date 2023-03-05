@@ -22,6 +22,10 @@ According to the Federal Motor Carrier Safety Administration, 31 percent of all 
 
 EyeSpy is a system that uses a camera to monitor the driver's face and detect if their eyes are closed. If the system detects that the driver's eyes are closed for a certain period, it will emit an alert sound, warning the driver to take immediate action and avoid a potential accident. This can be especially beneficial for long-distance drivers or those who work night shifts, as they may be more prone to feeling drowsy and may not even realize that their eyes have closed.
 
+<p align="center">
+  <img src="https://github.com/frankchang1000/EyeSpy/blob/main/docs/EyeSpy Slides.png", width="500"/>
+</p>
+
 ## Installation and Usage
 
 To use EyeSpy, begin with cloning the repository from GitHub, install requirements and then run flask_app.py. NOTE: you MUST have NVIDIA CuDNN installed in order to run the AI backend. A GPU with compute capacity >= 5.0 is required.
