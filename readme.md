@@ -26,7 +26,7 @@ EyeSpy is a system that uses a camera to monitor the driver's face and detect if
 
 To use EyeSpy, begin with cloning the repository from GitHub, install requirements and then run flask_app.py. NOTE: you MUST have NVIDIA CuDNN installed in order to run the AI backend. A GPU with compute capacity >= 5.0 is required.
 
-'''
+'''python
 git clone https://github.com/frankchang1000/EyeSpy.git
 cd EyeSpy
 Python -m venv venv
