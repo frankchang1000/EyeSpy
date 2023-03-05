@@ -29,9 +29,9 @@ To use EyeSpy, begin with cloning the repository from GitHub, install requiremen
 ```python
 git clone https://github.com/frankchang1000/EyeSpy.git
 cd EyeSpy
-Python -m venv venv
+python -m venv venv
 venv/Scripts/activate
-Python -m pip install -r requirements.txt
+python -m pip install -r requirements.txt
 python flask_app.py
 ```
 
